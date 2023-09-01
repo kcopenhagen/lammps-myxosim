@@ -1,0 +1,283 @@
+CMakeFiles/lammps.dir/home/kc32/software/lammps-working/src/force.cpp.o: \
+ /home/kc32/software/lammps-working/src/force.cpp \
+ /usr/include/stdc-predef.h /home/kc32/software/lammps-working/src/force.h \
+ /home/kc32/software/lammps-working/src/pointers.h \
+ /home/kc32/software/lammps-working/src/lmptype.h /usr/include/c++/8/cinttypes \
+ /usr/include/c++/8/cstdint \
+ /usr/include/c++/8/x86_64-redhat-linux/bits/c++config.h \
+ /usr/include/bits/wordsize.h \
+ /usr/include/c++/8/x86_64-redhat-linux/bits/os_defines.h /usr/include/features.h \
+ /usr/include/sys/cdefs.h /usr/include/bits/long-double.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
+ /usr/include/c++/8/x86_64-redhat-linux/bits/cpu_defines.h \
+ /opt/intel/compilers_and_libraries_2020.1.217/linux/compiler/include/icc/stdint.h \
+ /usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h /usr/include/stdint.h \
+ /usr/include/bits/libc-header-start.h /usr/include/bits/types.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/wchar.h \
+ /usr/include/bits/stdint-intn.h /usr/include/bits/stdint-uintn.h \
+ /usr/include/inttypes.h /usr/include/c++/8/climits \
+ /opt/intel/compilers_and_libraries_2020.1.217/linux/compiler/include/limits.h \
+ /usr/lib/gcc/x86_64-redhat-linux/8/include/limits.h /usr/include/limits.h \
+ /usr/include/bits/posix1_lim.h /usr/include/bits/local_lim.h \
+ /usr/include/linux/limits.h /usr/include/bits/posix2_lim.h \
+ /usr/include/bits/xopen_lim.h /usr/include/bits/uio_lim.h \
+ /usr/include/c++/8/cstdlib /usr/include/stdlib.h \
+ /opt/intel/compilers_and_libraries_2020.1.217/linux/compiler/include/icc/stddef.h \
+ /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+ /usr/include/bits/floatn.h /usr/include/bits/floatn-common.h \
+ /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
+ /usr/include/sys/types.h /usr/include/bits/types/clock_t.h \
+ /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
+ /usr/include/bits/types/timer_t.h /usr/include/endian.h \
+ /usr/include/bits/endian.h /usr/include/bits/byteswap.h \
+ /usr/include/bits/uintn-identity.h /usr/include/sys/select.h \
+ /usr/include/bits/select.h /usr/include/bits/types/sigset_t.h \
+ /usr/include/bits/types/__sigset_t.h /usr/include/bits/types/struct_timeval.h \
+ /usr/include/bits/types/struct_timespec.h /usr/include/bits/pthreadtypes.h \
+ /usr/include/bits/thread-shared-types.h /usr/include/bits/pthreadtypes-arch.h \
+ /usr/include/alloca.h /usr/include/bits/stdlib-bsearch.h \
+ /usr/include/bits/stdlib-float.h /usr/include/c++/8/bits/std_abs.h \
+ /opt/intel/compilers_and_libraries_2020.1.217/linux/mpi/intel64/include/mpi.h \
+ /opt/intel/compilers_and_libraries_2020.1.217/linux/mpi/intel64/include/mpio.h \
+ /usr/include/c++/8/cstddef /usr/include/c++/8/cstdio /usr/include/stdio.h \
+ /opt/intel/compilers_and_libraries_2020.1.217/linux/compiler/include/icc/stdarg.h \
+ /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
+ /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
+ /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
+ /usr/include/bits/types/cookie_io_functions_t.h /usr/include/bits/stdio_lim.h \
+ /usr/include/bits/sys_errlist.h /usr/include/bits/stdio.h \
+ /usr/include/c++/8/string /usr/include/c++/8/bits/stringfwd.h \
+ /usr/include/c++/8/bits/memoryfwd.h /usr/include/c++/8/bits/char_traits.h \
+ /usr/include/c++/8/bits/stl_algobase.h /usr/include/c++/8/bits/functexcept.h \
+ /usr/include/c++/8/bits/exception_defines.h \
+ /usr/include/c++/8/bits/cpp_type_traits.h /usr/include/c++/8/ext/type_traits.h \
+ /usr/include/c++/8/ext/numeric_traits.h /usr/include/c++/8/bits/stl_pair.h \
+ /usr/include/c++/8/bits/move.h /usr/include/c++/8/bits/concept_check.h \
+ /usr/include/c++/8/type_traits /usr/include/c++/8/bits/stl_iterator_base_types.h \
+ /usr/include/c++/8/bits/stl_iterator_base_funcs.h \
+ /usr/include/c++/8/debug/assertions.h /usr/include/c++/8/bits/stl_iterator.h \
+ /usr/include/c++/8/bits/ptr_traits.h /usr/include/c++/8/debug/debug.h \
+ /usr/include/c++/8/bits/predefined_ops.h /usr/include/c++/8/bits/postypes.h \
+ /usr/include/c++/8/cwchar /usr/include/wchar.h /usr/include/bits/types/wint_t.h \
+ /usr/include/bits/types/mbstate_t.h /usr/include/c++/8/bits/allocator.h \
+ /usr/include/c++/8/x86_64-redhat-linux/bits/c++allocator.h \
+ /usr/include/c++/8/ext/new_allocator.h /usr/include/c++/8/new \
+ /usr/include/c++/8/exception /usr/include/c++/8/bits/exception.h \
+ /usr/include/c++/8/bits/exception_ptr.h \
+ /usr/include/c++/8/bits/cxxabi_init_exception.h /usr/include/c++/8/typeinfo \
+ /usr/include/c++/8/bits/hash_bytes.h /usr/include/c++/8/bits/nested_exception.h \
+ /usr/include/c++/8/bits/localefwd.h \
+ /usr/include/c++/8/x86_64-redhat-linux/bits/c++locale.h \
+ /usr/include/c++/8/clocale /usr/include/locale.h /usr/include/bits/locale.h \
+ /usr/include/c++/8/iosfwd /usr/include/c++/8/cctype /usr/include/ctype.h \
+ /usr/include/c++/8/bits/ostream_insert.h /usr/include/c++/8/bits/cxxabi_forced.h \
+ /usr/include/c++/8/bits/stl_function.h /usr/include/c++/8/backward/binders.h \
+ /usr/include/c++/8/bits/range_access.h /usr/include/c++/8/initializer_list \
+ /usr/include/c++/8/bits/basic_string.h /usr/include/c++/8/ext/atomicity.h \
+ /usr/include/c++/8/x86_64-redhat-linux/bits/gthr.h \
+ /usr/include/c++/8/x86_64-redhat-linux/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sched.h /usr/include/bits/sched.h \
+ /usr/include/bits/types/struct_sched_param.h /usr/include/bits/cpu-set.h \
+ /usr/include/time.h /usr/include/bits/time.h /usr/include/bits/timex.h \
+ /usr/include/bits/types/struct_tm.h /usr/include/bits/types/struct_itimerspec.h \
+ /usr/include/bits/setjmp.h \
+ /usr/include/c++/8/x86_64-redhat-linux/bits/atomic_word.h \
+ /usr/include/c++/8/ext/alloc_traits.h /usr/include/c++/8/bits/alloc_traits.h \
+ /usr/include/c++/8/ext/string_conversions.h /usr/include/c++/8/cerrno \
+ /usr/include/errno.h /usr/include/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/asm/errno.h /usr/include/asm-generic/errno.h \
+ /usr/include/asm-generic/errno-base.h /usr/include/bits/types/error_t.h \
+ /usr/include/c++/8/bits/functional_hash.h \
+ /usr/include/c++/8/bits/basic_string.tcc \
+ /home/kc32/software/lammps-working/src/lammps.h \
+ /home/kc32/software/lammps-working/src/utils.h \
+ /home/kc32/software/lammps-working/src/fmt/format.h /usr/include/c++/8/algorithm \
+ /usr/include/c++/8/utility /usr/include/c++/8/bits/stl_relops.h \
+ /usr/include/c++/8/bits/stl_algo.h /usr/include/c++/8/bits/algorithmfwd.h \
+ /usr/include/c++/8/bits/stl_heap.h /usr/include/c++/8/bits/stl_tempbuf.h \
+ /usr/include/c++/8/bits/stl_construct.h \
+ /usr/include/c++/8/bits/uniform_int_dist.h /usr/include/c++/8/limits \
+ /usr/include/c++/8/cmath /usr/include/math.h /usr/include/bits/math-vector.h \
+ /usr/include/bits/libm-simd-decl-stubs.h /usr/include/bits/flt-eval-method.h \
+ /usr/include/bits/fp-logb.h /usr/include/bits/fp-fast.h \
+ /usr/include/bits/mathcalls-helper-functions.h /usr/include/bits/mathcalls.h \
+ /usr/include/bits/mathcalls-narrow.h /usr/include/bits/iscanonical.h \
+ /usr/include/bits/mathinline.h /usr/include/c++/8/memory \
+ /usr/include/c++/8/bits/stl_uninitialized.h \
+ /usr/include/c++/8/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/8/ext/concurrence.h /usr/include/c++/8/bits/uses_allocator.h \
+ /usr/include/c++/8/bits/unique_ptr.h /usr/include/c++/8/tuple \
+ /usr/include/c++/8/array /usr/include/c++/8/stdexcept \
+ /usr/include/c++/8/bits/invoke.h /usr/include/c++/8/bits/shared_ptr.h \
+ /usr/include/c++/8/bits/shared_ptr_base.h \
+ /usr/include/c++/8/bits/allocated_ptr.h /usr/include/c++/8/bits/refwrap.h \
+ /usr/include/c++/8/ext/aligned_buffer.h \
+ /usr/include/c++/8/bits/shared_ptr_atomic.h \
+ /usr/include/c++/8/bits/atomic_base.h \
+ /usr/include/c++/8/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/8/backward/auto_ptr.h \
+ /home/kc32/software/lammps-working/src/fmt/core.h /usr/include/c++/8/cstring \
+ /usr/include/string.h /usr/include/strings.h /usr/include/c++/8/functional \
+ /usr/include/c++/8/bits/std_function.h /usr/include/c++/8/iterator \
+ /usr/include/c++/8/ostream /usr/include/c++/8/ios \
+ /usr/include/c++/8/bits/ios_base.h /usr/include/c++/8/bits/locale_classes.h \
+ /usr/include/c++/8/bits/locale_classes.tcc /usr/include/c++/8/system_error \
+ /usr/include/c++/8/x86_64-redhat-linux/bits/error_constants.h \
+ /usr/include/c++/8/streambuf /usr/include/c++/8/bits/streambuf.tcc \
+ /usr/include/c++/8/bits/basic_ios.h /usr/include/c++/8/bits/locale_facets.h \
+ /usr/include/c++/8/cwctype /usr/include/wctype.h \
+ /usr/include/bits/wctype-wchar.h \
+ /usr/include/c++/8/x86_64-redhat-linux/bits/ctype_base.h \
+ /usr/include/c++/8/bits/streambuf_iterator.h \
+ /usr/include/c++/8/x86_64-redhat-linux/bits/ctype_inline.h \
+ /usr/include/c++/8/bits/locale_facets.tcc /usr/include/c++/8/bits/basic_ios.tcc \
+ /usr/include/c++/8/bits/ostream.tcc /usr/include/c++/8/istream \
+ /usr/include/c++/8/bits/istream.tcc /usr/include/c++/8/bits/stream_iterator.h \
+ /usr/include/c++/8/vector /usr/include/c++/8/bits/stl_vector.h \
+ /usr/include/c++/8/bits/stl_bvector.h /usr/include/c++/8/bits/vector.tcc \
+ /usr/include/c++/8/map /usr/include/c++/8/bits/stl_tree.h \
+ /usr/include/c++/8/bits/stl_map.h /usr/include/c++/8/bits/stl_multimap.h \
+ /home/kc32/software/lammps-working/build/styles/style_angle.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/angle_charmm.h \
+ /home/kc32/software/lammps-working/src/angle.h \
+ /home/kc32/software/lammps-working/src/INTEL/angle_charmm_intel.h \
+ /home/kc32/software/lammps-working/src/INTEL/fix_intel.h \
+ /home/kc32/software/lammps-working/src/error.h \
+ /home/kc32/software/lammps-working/src/fix.h \
+ /home/kc32/software/lammps-working/src/INTEL/intel_buffers.h \
+ /opt/intel/compilers_and_libraries_2020.1.217/linux/compiler/include/omp.h \
+ /usr/include/c++/8/stdlib.h /home/kc32/software/lammps-working/src/atom.h \
+ /usr/include/c++/8/set /usr/include/c++/8/bits/stl_set.h \
+ /usr/include/c++/8/bits/stl_multiset.h \
+ /home/kc32/software/lammps-working/src/neighbor.h \
+ /home/kc32/software/lammps-working/src/neigh_list.h \
+ /home/kc32/software/lammps-working/src/INTEL/intel_preprocess.h \
+ /home/kc32/software/lammps-working/src/pair.h \
+ /home/kc32/software/lammps-working/src/update.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/angle_cosine.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/angle_cosine_squared.h \
+ /home/kc32/software/lammps-working/src/angle_deprecated.h \
+ /home/kc32/software/lammps-working/src/DIPOLE/angle_dipole.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/angle_harmonic.h \
+ /home/kc32/software/lammps-working/src/INTEL/angle_harmonic_intel.h \
+ /home/kc32/software/lammps-working/src/angle_hybrid.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/angle_table.h \
+ /home/kc32/software/lammps-working/src/angle_zero.h \
+ /home/kc32/software/lammps-working/build/styles/style_bond.h \
+ /home/kc32/software/lammps-working/src/bond_deprecated.h \
+ /home/kc32/software/lammps-working/src/bond.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/bond_fene.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/bond_fene_expand.h \
+ /home/kc32/software/lammps-working/src/INTEL/bond_fene_intel.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/bond_gromos.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/bond_harmonic.h \
+ /home/kc32/software/lammps-working/src/INTEL/bond_harmonic_intel.h \
+ /home/kc32/software/lammps-working/src/bond_hybrid.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/bond_morse.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/bond_quartic.h \
+ /home/kc32/software/lammps-working/src/bond_selfpropulsion.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/bond_table.h \
+ /home/kc32/software/lammps-working/src/bond_zero.h \
+ /home/kc32/software/lammps-working/build/styles/style_dihedral.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/dihedral_charmm.h \
+ /home/kc32/software/lammps-working/src/dihedral.h \
+ /home/kc32/software/lammps-working/src/INTEL/dihedral_charmm_intel.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/dihedral_charmmfsw.h \
+ /home/kc32/software/lammps-working/src/dihedral_deprecated.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/dihedral_harmonic.h \
+ /home/kc32/software/lammps-working/src/INTEL/dihedral_harmonic_intel.h \
+ /home/kc32/software/lammps-working/src/dihedral_hybrid.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/dihedral_multi_harmonic.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/dihedral_opls.h \
+ /home/kc32/software/lammps-working/src/INTEL/dihedral_opls_intel.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/dihedral_table.h \
+ /home/kc32/software/lammps-working/src/dihedral_zero.h \
+ /home/kc32/software/lammps-working/build/styles/style_improper.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/improper_cvff.h \
+ /home/kc32/software/lammps-working/src/improper.h \
+ /home/kc32/software/lammps-working/src/INTEL/improper_cvff_intel.h \
+ /home/kc32/software/lammps-working/src/improper_deprecated.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/improper_harmonic.h \
+ /home/kc32/software/lammps-working/src/INTEL/improper_harmonic_intel.h \
+ /home/kc32/software/lammps-working/src/improper_hybrid.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/improper_umbrella.h \
+ /home/kc32/software/lammps-working/src/improper_zero.h \
+ /home/kc32/software/lammps-working/build/styles/style_kspace.h \
+ /home/kc32/software/lammps-working/src/KSPACE/ewald.h \
+ /home/kc32/software/lammps-working/src/kspace.h \
+ /home/kc32/software/lammps-working/src/KSPACE/ewald_dipole.h \
+ /home/kc32/software/lammps-working/src/KSPACE/ewald_dipole_spin.h \
+ /home/kc32/software/lammps-working/src/KSPACE/ewald_disp.h \
+ /home/kc32/software/lammps-working/src/kspace_deprecated.h \
+ /home/kc32/software/lammps-working/src/KSPACE/msm.h \
+ /home/kc32/software/lammps-working/src/KSPACE/msm_cg.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pppm.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pppm_cg.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pppm_dipole.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pppm_dipole_spin.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pppm_disp.h \
+ /home/kc32/software/lammps-working/src/INTEL/pppm_disp_intel.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pppm_disp_tip4p.h \
+ /home/kc32/software/lammps-working/src/INTEL/pppm_intel.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pppm_stagger.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pppm_tip4p.h \
+ /home/kc32/software/lammps-working/build/styles/style_pair.h \
+ /home/kc32/software/lammps-working/src/pair_born.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_born_coul_long.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_born_coul_msm.h \
+ /home/kc32/software/lammps-working/src/pair_buck.h \
+ /home/kc32/software/lammps-working/src/pair_buck_coul_cut.h \
+ /home/kc32/software/lammps-working/src/INTEL/pair_buck_coul_cut_intel.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_buck_coul_long.h \
+ /home/kc32/software/lammps-working/src/INTEL/pair_buck_coul_long_intel.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_buck_coul_msm.h \
+ /home/kc32/software/lammps-working/src/INTEL/pair_buck_intel.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_buck_long_coul_long.h \
+ /home/kc32/software/lammps-working/src/pair_coul_cut.h \
+ /home/kc32/software/lammps-working/src/pair_coul_debye.h \
+ /home/kc32/software/lammps-working/src/pair_coul_dsf.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_coul_long.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_coul_msm.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_coul_streitz.h \
+ /home/kc32/software/lammps-working/src/pair_coul_wolf.h \
+ /home/kc32/software/lammps-working/src/pair_deprecated.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/pair_hbond_dreiding_lj.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/pair_hbond_dreiding_morse.h \
+ /home/kc32/software/lammps-working/src/pair_hybrid.h \
+ /home/kc32/software/lammps-working/src/pair_hybrid_overlay.h \
+ /home/kc32/software/lammps-working/src/pair_hybrid_scaled.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/pair_lj_charmm_coul_charmm.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/pair_lj_charmm_coul_charmm_implicit.h \
+ /home/kc32/software/lammps-working/src/INTEL/pair_lj_charmm_coul_charmm_intel.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_lj_charmm_coul_long.h \
+ /home/kc32/software/lammps-working/src/INTEL/pair_lj_charmm_coul_long_intel.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_lj_charmm_coul_msm.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/pair_lj_charmmfsw_coul_charmmfsh.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_lj_charmmfsw_coul_long.h \
+ /home/kc32/software/lammps-working/src/pair_lj_cut.h \
+ /home/kc32/software/lammps-working/src/pair_lj_cut_cap_cut.h \
+ /home/kc32/software/lammps-working/src/pair_lj_cut_coul_cut.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_lj_cut_coul_long.h \
+ /home/kc32/software/lammps-working/src/INTEL/pair_lj_cut_coul_long_intel.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_lj_cut_coul_msm.h \
+ /home/kc32/software/lammps-working/src/DIPOLE/pair_lj_cut_dipole_cut.h \
+ /home/kc32/software/lammps-working/src/DIPOLE/pair_lj_cut_dipole_long.h \
+ /home/kc32/software/lammps-working/src/INTEL/pair_lj_cut_intel.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/pair_lj_cut_tip4p_cut.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_lj_cut_tip4p_long.h \
+ /home/kc32/software/lammps-working/src/pair_lj_cut_water_cut.h \
+ /home/kc32/software/lammps-working/src/pair_lj_expand.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_lj_long_coul_long.h \
+ /home/kc32/software/lammps-working/src/INTEL/pair_lj_long_coul_long_intel.h \
+ /home/kc32/software/lammps-working/src/DIPOLE/pair_lj_long_dipole_long.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_lj_long_tip4p_long.h \
+ /home/kc32/software/lammps-working/src/DIPOLE/pair_lj_sf_dipole_sf.h \
+ /home/kc32/software/lammps-working/src/pair_morse.h \
+ /home/kc32/software/lammps-working/src/pair_soft.h \
+ /home/kc32/software/lammps-working/src/pair_table.h \
+ /home/kc32/software/lammps-working/src/MOLECULE/pair_tip4p_cut.h \
+ /home/kc32/software/lammps-working/src/KSPACE/pair_tip4p_long.h \
+ /home/kc32/software/lammps-working/src/pair_yukawa.h \
+ /home/kc32/software/lammps-working/src/pair_zbl.h \
+ /home/kc32/software/lammps-working/src/pair_zero.h \
+ /home/kc32/software/lammps-working/src/comm.h
