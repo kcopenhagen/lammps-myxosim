@@ -1,5 +1,8 @@
 # lammps-myxosim
 
-go into install folder
-edit install.sh
-replace my username with yours.
+Installation:
+
+cd install-lammps
+
+./install.sh
+
