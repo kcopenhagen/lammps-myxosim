@@ -2,6 +2,7 @@
 
 VERSION=working
 cd lammps-${VERSION}
+mkdir build
 cd build
 
 module purge

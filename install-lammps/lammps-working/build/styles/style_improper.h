@@ -1,8 +1,0 @@
-#include "improper_cvff.h"
-#include "improper_cvff_intel.h"
-#include "improper_deprecated.h"
-#include "improper_harmonic.h"
-#include "improper_harmonic_intel.h"
-#include "improper_hybrid.h"
-#include "improper_umbrella.h"
-#include "improper_zero.h"
