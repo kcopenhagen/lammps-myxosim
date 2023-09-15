@@ -1,4 +1,4 @@
-function dirf = dfield_mb(img,n)
+function dirf = dfield_expt(img,n)
 
     % Calculate and return the director field for img smoothing kernel sized n.
         

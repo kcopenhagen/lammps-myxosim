@@ -1,35 +1,52 @@
-function adefs = finddefects_sim(dfield, S, r, boxSize, res)
+function adefs = finddefects_sim(bds, S, r, XYcal)
 %Finds and returns the x, and y coordinates of defects the charge and the
 %direction of each defect at time t, in experiment fpath, as arrays.
 
     % Load in director field and order field for the current frame. Find
     % the ring element for the radius r. (circle of pixels).
     % r = 6;
-    re = makeringelement(r);
+    res = size(S,1);
+    boxSize = res*XYcal;
+    sz = ceil(r/XYcal)*2 + 1;
+    re = makeringelement(ceil(r/XYcal));
+
     %S = loaddata(fpath,t,'order','float');
     %dfield = loaddata(fpath,t,'dfield','float');
     
-    defs = (S<0.5);
+    %defs = (S<0.5);
+    Smins = imregionalmin(S,8);
+    filt = [-1 -1 -1 -1 -1; 
+        -1 -1 -1 -1 -1; 
+        -1 -1 24 -1 -1; 
+        -1 -1 -1 -1 -1; 
+        -1 -1 -1 -1 -1;]/24;
+    Sprom = conv2(S,filt,'same');
+    tinds = find(Smins);
+    [Centy, Centx] = find(Smins);
+    cdefs = Sprom(tinds)<-0.2;
+    Centy = Centy(cdefs);
+    Centx = Centx(cdefs);
     %defs = imextendedmin(S,0.3).*imextendedmin(S,0.2);
     
-    CC = bwconncomp(defs);
-    P = regionprops(CC, 'Centroid');
-    Centroids = [P.Centroid];
-    Centx = round(Centroids(1:2:end-1));
-    Centy = round(Centroids(2:2:end));
+    % CC = bwconncomp(defs);
+    % P = regionprops(CC, 'Centroid');
+    % Centroids = [P.Centroid];
+    % Centx = round(Centroids(1:2:end-1));
+    % Centy = round(Centroids(2:2:end));
     %Exclude defects too close to the wall to define the ring to calculate
     %charge with.
-    nog = ~(Centx<r).*~(Centx>numel(S(1,:))-r).*~(Centy<r).*~(Centy>numel(S(:,1))-r);
-    Centx(~nog) = [];
-    Centy(~nog) = [];
-    
+    %nog = ~(Centx<r).*~(Centx>numel(S(1,:))-r).*~(Centy<r).*~(Centy>numel(S(:,1))-r);
+    %Centx(~nog) = [];
+    %Centy(~nog) = [];
+    % 
     q = [];
     d = [];
     
     %Loop through all defects to find charge and direction for them.
     for i = 1:numel(Centx)
+        bds_cent = shift_bds(bds,Centx(i)*XYcal,Centy(i)*XYcal,boxSize,sz*XYcal);
+        dirt = dfield_sim(bds_cent,sz*XYcal,sz);
         %Get the director field just around the defect centroid.
-        dirt = dfield(Centy(i)-r+1:Centy(i)+r-1,Centx(i)-r+1:Centx(i)+r-1);
         %Find the director at each ring element pixel.
         ang1s = dirt(re);
         ang2s = [ang1s(2:end); ang1s(1)];
@@ -52,10 +69,10 @@ function adefs = finddefects_sim(dfield, S, r, boxSize, res)
             [dnxnxdx, ~] = gradient(nxnx);
             [dnxnydx, dnxnydy] = gradient(nxny);
             [~, dnynydy] = gradient(nyny);
-            dnxnxdx = dnxnxdx(r,r);
-            dnxnydx = dnxnydx(r,r);
-            dnxnydy = dnxnydy(r,r);
-            dnynydy = dnynydy(r,r);
+            dnxnxdx = dnxnxdx((sz+1)/2,(sz+1)/2);
+            dnxnydx = dnxnydx((sz+1)/2,(sz+1)/2);
+            dnxnydy = dnxnydy((sz+1)/2,(sz+1)/2);
+            dnynydy = dnynydy((sz+1)/2,(sz+1)/2);
             dx = dnxnxdx+dnxnydy;
             dy = dnxnydx+dnynydy;
             dr = sqrt(dx^2+dy^2);
@@ -73,10 +90,10 @@ function adefs = finddefects_sim(dfield, S, r, boxSize, res)
             [dnxnxdx, ~] = gradient(nxnx);
             [dnxnydx, dnxnydy] = gradient(nxny);
             [~, dnynydy] = gradient(nyny);
-            dnxnxdx = dnxnxdx(r,r);
-            dnxnydx = dnxnydx(r,r);
-            dnxnydy = dnxnydy(r,r);
-            dnynydy = dnynydy(r,r);
+            dnxnxdx = dnxnxdx((sz+1)/2,(sz+1)/2);
+            dnxnydx = dnxnydx((sz+1)/2,(sz+1)/2);
+            dnxnydy = dnxnydy((sz+1)/2,(sz+1)/2);
+            dnynydy = dnynydy((sz+1)/2,(sz+1)/2);
             
             psiprime = atan2(dnxnydx+dnynydy,dnxnxdx+dnxnydy);
             d = [d; [cos(-psiprime/3) sin(-psiprime/3)]];
@@ -85,35 +102,19 @@ function adefs = finddefects_sim(dfield, S, r, boxSize, res)
         end
     end
     
-    x = Centx*boxSize/res;
-    y = Centy*boxSize/res;
+    x = Centx*XYcal;
+    y = Centy*XYcal;
+    dx = d(:,1);
+    dy = d(:,2);
     
     if numel(x)>0
-        adefs = struct('x',num2cell(x'),'y',num2cell(y'),'q',num2cell(q'),'d',num2cell(d,2));
+        adefs = struct('x',num2cell(x'),'y',num2cell(y'),'q',num2cell(q),...
+            'dx',num2cell(dx'),'dy',num2cell(dy'));
         %adefs(del) = [];
         adefs(abs([adefs.q])<0.1) = [];
     else
         adefs = [];
     end
     
-end
-    
-
-function inds = makeringelement(r)
-    seb = strel('disk',r);
-    sea = strel('disk',r-1);
-    sea = padarray(sea.Neighborhood,[1 1]);
-    seneigh = seb.Neighborhood - sea;
-    [y, x] = find(seneigh);
-    x = x-numel(seneigh(:,1))/2;
-    y = y-numel(seneigh(:,1))/2;
-    a = atan2(y,x);
-    [~,ind] = sort(a);
-    x = x(ind);
-    y = y(ind);
-
-    x = x+numel(seneigh(:,1))/2;
-    y = y+numel(seneigh(:,1))/2;
-    inds = sub2ind(size(seneigh),y,x);
 end
     

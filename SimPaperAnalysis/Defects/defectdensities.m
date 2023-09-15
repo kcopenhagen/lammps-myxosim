@@ -24,24 +24,29 @@ end
 eps = 5;
 d = 0.7;
 l = 7;
-rho = 0.21;
+rho = 0.3;
 v = 5;
-Kagar = 300;
-Kstiff = 15;
-revs = [1 2 4 8:2:20];
-run = 0;
-res = 1000;
+Kagar = 500;
+Kstiff = 100;
+revs = [1 2 4 6 8 10 12 14 16 18 20 100 999];
+runs = 0:2;
+res = 1389;
 props = [];
+
 for r = 1:numel(revs)
-    fpath = simname(eps,d,l,rho,v,500,30,8,run,'PoissonRevs');
-    [files,boxSize] = getframes(fpath);
     ndefs = [];
-    for t = 1:50:numel(files)
-        bds = loadsimdata(fullfile(files(t).folder,files(t).name));
-        dirf = dfield_sim(bds,boxSize,res);
-        S = nemorderfield_sim(dirf,11);
-        defs = finddefects_sim(dirf,S,35,boxSize,res);
-        ndefs = [ndefs; numel(defs)];
+    for r2 = 1:numel(runs)
+        run = runs(r2)
+        fpath = simname(eps,d,l,rho,v,Kagar,Kstiff,revs(r),run,'PoissonRevs');
+        [files,boxSize] = getframes(fpath);
+        files = files(rand(size(files))<0.05);
+        for t = 1:numel(files)
+            bds = loadsimdata(fullfile(files(t).folder,files(t).name));
+            dirf = dfield_sim(bds,boxSize,res);
+            S = nemorderfield_sim(dirf,11);
+            defs = finddefects_sim(dirf,S,35,boxSize,res);
+            ndefs = [ndefs; numel(defs)];
+        end
     end
     A = 100*100;
     propt = struct('rev',revs(r),'defdens',ndefs/A);

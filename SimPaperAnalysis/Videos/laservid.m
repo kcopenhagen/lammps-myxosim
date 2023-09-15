@@ -18,12 +18,11 @@ function laservid(fpath,stT,finT)
     fname = fullfile(files(t).folder,files(t).name);
     bds = loadsimdata(fname);
     
-    cellimg = cellim(bds,boxSize,res,[0 0],2,2,1);
+    cellimg = cellim(bds,boxSize,res,[0 0],4,2,1);
     cellimg(cellimg>0.7) = 0.7;
     rescale(cellimg,0,1);
     cellimg = real2rgb(cellimg,gray);
     writeVideo(v,cellimg);
-
   end
   close(v)
   disp("laser vid complete")
