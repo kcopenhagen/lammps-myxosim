@@ -1,5 +1,10 @@
 function adefs = finddefs_expt(dirf,holes,minr,XYcal,dsm)
     %S = sfield_sim(dirf);
+    holes(1:round(minr/XYcal),:) = true;
+    holes(:,1:round(minr/XYcal)) = true;
+    holes(end-round(minr/XYcal)+1:end,:) = true;
+    holes(:,end-round(minr/XYcal)+1:end) = true;
+
     q = chargeeverywhere(dirf);
     q(holes) = 0;
     [adefypix,adefxpix] = find(abs(q)>0.1);

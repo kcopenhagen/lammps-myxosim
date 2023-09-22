@@ -155,11 +155,16 @@ set(gca,'clim',[0 7]);
 
 %% Experiments
 tic
-[fpath1, fpath2, ~] = exptpaths("kcwt");
+[fpath1, fpath2, fpath3] = exptpaths("mbpila");
 rsm = 5;
-XYcal = 0.133;
+XYcal = 0.072;
 dsm = 1;
 minr = 5;
+imsz = 40;
+dr = 0.2;
+
+xbins = -imsz/2:dr:imsz/2;
+ybins = xbins;
 
 epdefvx = zeros(numel(ybins),numel(xbins));
 epdefvxM2 = epdefvx;
@@ -172,10 +177,14 @@ endefvy = epdefvx;
 endefvyM2 = endefvy;
 endefct = epdefvx;
 
-for r = 1:numel(fpath2)
-    fpath = fullfile(fpath1,fpath2(r));
-    ts = getts(fpath);
-    for t = 2:numel(ts)
+for r = 1:numel(fpath3)
+    
+    fpath = fullfile(fpath1,fpath2,fpath3(r));
+    fpath = fullfile(fpath,'img');
+    files = dir(fpath);
+    files = files(~[files.isdir]);
+
+    for t = 2:numel(files)
         l = laserdata(fpath,t);
         dirf = dfield_expt(l,rsm);
         holes = (loaddata(fpath,t,'covid_layers','int8') == 0);
@@ -190,29 +199,29 @@ for r = 1:numel(fpath2)
         Vy = loaddata(fpath,t,'flows/Vy','float')*60;
 
         for i = 1:numel(adefs)
-            if (adefs(i).q > 0.1)
-                [cxs,cys,cvx,cvy] = recenter_eVs(Vx,Vy,adefs(i),XYcal,imsz);
-                cxinds = discretize(cxs,xbins);
-                cyinds = discretize(cys,ybins);
-                inds = sub2ind(size(epdefvx),cyinds,cxinds);
-                epdefct(inds) = epdefct(inds) + 1;
-                vxdelta = cvx - epdefvx(inds);
-                vydelta = cvy - epdefvy(inds);
-                epdefvx(inds) = epdefvx(inds) + vxdelta./epdefct(inds);
-                epdefvy(inds) = epdefvy(inds) + vydelta./epdefct(inds);
-                vxdelta2 = cvx - epdefvx(inds);
-                vydelta2 = cvy - epdefvy(inds);
-                epdefvxM2(inds) = epdefvxM2(inds) + vxdelta.*vxdelta2;
-                epdefvyM2(inds) = epdefvyM2(inds) + vydelta.*vydelta2;
-            elseif (adefs(i).q < -0.1)
-                    cdef = adefs(i);
+            % if (adefs(i).q > 0.1)
+            %     [cxs,cys,cvx,cvy] = recenter_eVs(Vx,Vy,adefs(i),XYcal,imsz);
+            %     cxinds = discretize(cxs,xbins);
+            %     cyinds = discretize(cys,ybins);
+            %     inds = sub2ind(size(epdefvx),cyinds,cxinds);
+            %     epdefct(inds) = epdefct(inds) + 1;
+            %     vxdelta = cvx - epdefvx(inds);
+            %     vydelta = cvy - epdefvy(inds);
+            %     epdefvx(inds) = epdefvx(inds) + vxdelta./epdefct(inds);
+            %     epdefvy(inds) = epdefvy(inds) + vydelta./epdefct(inds);
+            %     vxdelta2 = cvx - epdefvx(inds);
+            %     vydelta2 = cvy - epdefvy(inds);
+            %     epdefvxM2(inds) = epdefvxM2(inds) + vxdelta.*vxdelta2;
+            %     epdefvyM2(inds) = epdefvyM2(inds) + vydelta.*vydelta2;
+            if (adefs(i).q < -0.1)
                 for rot = 0:2*pi/3:(2*pi-0.1)
+                    cdef = adefs(i);
                     cdefang = atan2(cdef.dy,cdef.dx);
                     cdefang = cdefang + rot;
                     cdef.dx = cos(cdefang);
                     cdef.dy = sin(cdefang);
                     
-                    [cxs,cys,cvx,cvy] = recenter_eVs(Vx,Vy,adefs(i),XYcal,imsz);
+                    [cxs,cys,cvx,cvy] = recenter_eVs(Vx,Vy,cdef,XYcal,imsz);
                     cxinds = discretize(cxs,xbins);
                     cyinds = discretize(cys,ybins);
                     inds = sub2ind(size(endefvx),cyinds,cxinds);
@@ -231,11 +240,13 @@ for r = 1:numel(fpath2)
     end
 end
 toc
+
 %% Experiment images
+
 qudr = 10;
 imsm = 2;
-empdefvx = imgaussfilt(epdefvx,imsm)*60;
-empdefvy = imgaussfilt(epdefvy,imsm)*60;
+empdefvx = imgaussfilt(epdefvx,imsm);
+empdefvy = imgaussfilt(epdefvy,imsm);
 
 evarpdefvx = imgaussfilt(epdefvxM2./epdefct,imsm);
 evarpdefvy = imgaussfilt(epdefvyM2./epdefct,imsm);
@@ -245,7 +256,7 @@ epvs = sqrt(empdefvx.^2 + empdefvy.^2);
 epvvar = sqrt(evarpdefvx.^2 + evarpdefvy.^2);
 p = pcolor(xbins,ybins,epvs);
 p.EdgeColor = 'none';
-colormap(inferno)
+colormap(summer)
 axis off
 axis equal
 hold on
@@ -253,7 +264,7 @@ hold on
 [xx,yy] = meshgrid(xbins,ybins);
 
 quiver(xx(1:qudr:end,1:qudr:end),yy(1:qudr:end,1:qudr:end),...
-    empdefvx(1:qudr:end,1:qudr:end),empdefvy(1:qudr:end,1:qudr:end),'w','LineWidth',2)
+    empdefvx(1:qudr:end,1:qudr:end),empdefvy(1:qudr:end,1:qudr:end),'k','LineWidth',2)
 plot([-imsz imsz]/2,[0 0],'g--');
 plot([0 0],[-imsz imsz]/2,'g--');
 
@@ -294,3 +305,17 @@ colormap(inferno)
 axis equal
 axis off
 set(gca,'clim',[0 7]);
+
+
+%% Saving
+fname = fullfile('~/lammps-myxosim/SimPaperAnalysis/Figures/Data','flows.mat');
+
+save(fname,'pdefvx_kcwt',epdefvx,'pdefvy_kcwt',epdefvy,...
+    'pdefvxM2_kcwt',epdefvxM2,'pdefvyM2_kcwt',epdefvyM2,'pdefct_kcwt',epdefct,...
+    'ndefvx_kcwt',endefvx,'ndefvy_kcwt',endefvy,...
+    'ndefvxM2_kcwt',endefvxM2,'ndefvyM2_kcwt',endefvyM2,'ndefct_kcwt',endefct,...
+    'pdefvx_sim',pdefvx,'pdefvy_sim',pdefvy,...
+    'pdefvxM2_sim',pdefvxM2,'pdefvyM2_sim',pdefvyM2,'pdefct_sim',pdefct,...
+    'ndefvx_sim',ndefvx,'ndefvy_sim',ndefvy,...
+    'ndefvxM2_sim',ndefvxM2,'ndefvyM2_sim',ndefvyM2,'ndefct_sim',ndefct);
+

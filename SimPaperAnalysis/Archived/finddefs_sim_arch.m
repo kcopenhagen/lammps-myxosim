@@ -39,8 +39,7 @@ function adefs = finddefs_sim(bds,boxSize,varargin)
         
     end
     
-    res = ceil(boxSize/XYcal);
-    dirf = dfield_sim(bds,boxSize,res,Dr);
+    dirf = dfield_sim(bds,boxSize,XYcal,Dr);
     S = nemorderfield_sim(dirf,Sr);
     S(S>Scutoff) = 1;
 

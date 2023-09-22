@@ -1,4 +1,6 @@
 function adefs = finddefs_sim(bds,boxSize,minr,rsm,XYcal,dsm)
+    % 
+
     dirf = dfield_sim(bds,boxSize,XYcal,rsm);
     %S = sfield_sim(dirf);
     q = chargeeverywhere(dirf);
@@ -34,11 +36,10 @@ function adefs = finddefs_sim(bds,boxSize,minr,rsm,XYcal,dsm)
             dr(:,J) = boxSize;
             dr(J,:) = boxSize;
         else
-    
             adefq(I) = adefq(I)+adefq(J);
             adefx(I) = (adefx(I)+adefx(J))/2;
             adefy(I) = (adefy(I)+adefy(J))/2;
-            del = [del;J];
+            del = [del; J];
             dr(:,J) = boxSize;
             adefx(del) = [];
             adefy(del) = [];
@@ -51,7 +52,8 @@ function adefs = finddefs_sim(bds,boxSize,minr,rsm,XYcal,dsm)
             dy(dy<-boxSize/2) = dy(dy<-boxSize/2) + boxSize;
             
             dr = sqrt(dx.^2 + dy.^2);
-    
+            dr = dr + tril(boxSize*ones(size(dr)));
+
             del = [];
         end
 
@@ -136,4 +138,5 @@ function adefs = finddefs_sim(bds,boxSize,minr,rsm,XYcal,dsm)
     adefs = struct('x',num2cell(adefx),...
         'y',num2cell(adefy),'q',num2cell(adefq),...
         'dx',num2cell(cos(adefd)),'dy',num2cell(sin(adefd)));
+
 end
