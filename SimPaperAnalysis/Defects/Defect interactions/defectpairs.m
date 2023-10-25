@@ -5,26 +5,26 @@ dx = 0.5;
 
 xbins = -20:dx:20;
 ybins = -20:dx:20;
-    
+
 switch dataset
     case "sim"
         boxSize = 100;
-        minr = 1;   % Minumum defect spacing. (um)
+        minr = 2.4;   % Minumum defect spacing. (um)
         rsm = 1;    % Director field smoothing for simulated director fields (um).
         XYcal = 0.2; % XY calibration for simulation fields (um / pix).
         dsm = 1;    % Gradient smoothing for calculating defect directions (um).
     case "mbwt"
-        minr = 1;
+        minr = 2.4;
         rsm = 17;
         XYcal = 0.072;
         dsm = 1;
     case "kcwt"
-        minr = 1;
+        minr = 2.4;
         rsm = 13;
         XYcal = 0.133;
         dsm = 1;
     case "mbpila"
-        minr = 1;
+        minr = 2.4;
         rsm = 17;
         XYcal = 0.072;
         dsm = 1;
@@ -69,21 +69,22 @@ for f = 1:numel(files)
                 adefs = finddefs_sim(bds,boxSize,minr,rsm,XYcal,dsm);
             case "mbwt"
                 l = imread(fname);
+                holes = findholes(l,9);
                 l = rgb2gray(l);
                 l = imgaussfilt(imsharpen(l,'Radius',3,'Amount',3),2);
-                holes = false(size(l));
                 dirf = dfield_expt(l,rsm);
                 adefs = finddefs_expt(dirf,holes,minr,XYcal,dsm);
             case "kcwt"
                 l = laserdata(fname);
+                %holes = findholes(l,XYcal);
                 dirf = dfield_expt(l,rsm);
                 holes = loaddata(fname,'covid_layers','int8')==0;
                 adefs = finddefs_expt(dirf,holes,minr,XYcal,dsm);
             case "mbpila"
                 l = imread(fname);
+                holes = findholes(l,9);
                 l = rgb2gray(l);
                 l = imgaussfilt(imsharpen(l,'Radius',3,'Amount',3),2);
-                holes = false(size(l));
                 dirf = dfield_expt(l,rsm);
                 adefs = finddefs_expt(dirf,holes,minr,XYcal,dsm);
         end
@@ -174,8 +175,8 @@ for f = 1:numel(files)
                         end
                     
                     elseif (adefs(i).q < -0.1 && adefs(j).q > 0.1)
-                        for rot = 0:2*pi/3:2*pi-0.01
-                            phii = phii + rot;
+                        for rot = 1:3
+                            phii = phii + 2*pi/3;
                             theta = labtheta - phii;
                             while (theta>pi)
                                 theta = theta - 2*pi;
@@ -208,8 +209,8 @@ for f = 1:numel(files)
                         end
                         
                     elseif (adefs(i).q < -0.1 && adefs(j).q < -0.1)
-                        for rot = 0:2*pi/3:2*pi-0.01
-                            phii = phii+rot;
+                        for rot = 1:3
+                            phii = phii+2*pi/3;
                             
                             theta = labtheta - phii;
                             while (theta>pi)
@@ -268,10 +269,11 @@ imagesc(ax1,ppctx)
 imagesc(ax2,pnctx)
 imagesc(ax3,npctx)
 imagesc(ax4,nnctx)
+
 imagesc(ax5,atan2(ppmeanphisy,ppmeanphisx))
-imagesc(ax6,atan2(pnmeanphisy,pnmeanphisx))
+imagesc(ax6,atan2(pnmeanphisy,pnmeanphisx)/3)
 imagesc(ax7,atan2(npmeanphisy,npmeanphisx))
-imagesc(ax8,atan2(nnmeanphisy,nnmeanphisx))
+imagesc(ax8,atan2(nnmeanphisy,nnmeanphisx)/3)
 
 axs = [ax1,ax2,ax3,ax4,ax5,ax6,ax7,ax8];
 
@@ -283,6 +285,13 @@ for i = 1:8
 end
 
 set(ax5,'clim',[-pi pi]);
-set(ax6,'clim',[-pi pi]);
+set(ax6,'clim',[-pi/3 pi/3]);
 set(ax7,'clim',[-pi pi]);
-set(ax8,'clim',[-pi pi]);
+set(ax8,'clim',[-pi/3 pi/3]);
+
+%%
+save(fullfile('~/lammps-myxosim/SimPaperAnalysis/Figures/Defects/allpairs/',dataset),...
+    'ppctx','ppmeanphisx','ppmeanphisy','ppM2phisx','ppM2phisy',...
+    'pnctx','pnmeanphisx','pnmeanphisy','pnM2phisx','pnM2phisy',...
+    'npctx','npmeanphisx','npmeanphisy','npM2phisx','npM2phisy',...
+    'nnctx','nnmeanphisx','nnmeanphisy','nnM2phisx','nnM2phisy');

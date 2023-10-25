@@ -1,9 +1,10 @@
-function img = cellim(bds,boxSize,res,amt,cd,cg,cs)
+function img = cellim(bds,boxSize,XYcal,amt,cd,cg,cs)
 %% bds is the data read in with loadsimdata2.
 % boxSize is boxSize
 % res is how many pixels on a side for the final image.
 % amt is the shift (use min([bds.xs]) min([bds.ys]) on recentered data.).
 
+    res = round(boxSize/XYcal);
     if (nargin < 4)
         amt = [0 0];
     end

@@ -1,5 +1,5 @@
 function laservid(fpath,stT,finT)
-  res = 1389;
+  res = 1000;
   addpath(genpath("~/SimPaperAnalysis"));
   
   [files,boxSize] = getframes(fpath);
@@ -18,10 +18,10 @@ function laservid(fpath,stT,finT)
     fname = fullfile(files(t).folder,files(t).name);
     bds = loadsimdata(fname);
     
-    cellimg = cellim(bds,boxSize,res,[0 0],4,2,1);
-    cellimg(cellimg>0.7) = 0.7;
-    rescale(cellimg,0,1);
-    cellimg = real2rgb(cellimg,gray);
+    cellimg = cellim(bds,boxSize,res,[0 0],2,1,0.5);
+    cellimg = rescale(cellimg,0.4,1);
+    cellimg = real2rgb(cellimg,gray,[0 1]);
+    
     writeVideo(v,cellimg);
   end
   close(v)

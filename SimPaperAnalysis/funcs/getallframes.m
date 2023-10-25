@@ -26,7 +26,6 @@ switch dataset
         end
     case "mbwt"
         [fpath1,fpath2,fpath3] = exptpaths("mbwt");
-        maxT = [113, 34, ]
         files = [];
         for f = 1:numel(fpath3)
             fpath = fullfile(fpath1,fpath2,fpath3(f),'img');

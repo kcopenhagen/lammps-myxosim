@@ -2,3 +2,5 @@ Data/
 temp/
 *.asv
 build/
+*.png
+*.mat

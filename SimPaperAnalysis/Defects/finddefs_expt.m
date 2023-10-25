@@ -19,7 +19,6 @@ function adefs = finddefs_expt(dirf,holes,minr,XYcal,dsm)
     dy = adefy - adefy';
     
     dr = sqrt(dx.^2 + dy.^2);
-    
     dr = dr + tril(999*ones(size(dr)));
     
     [mindr, I] = min(dr,[],'all');
@@ -34,13 +33,10 @@ function adefs = finddefs_expt(dirf,holes,minr,XYcal,dsm)
             dr(:,J) = 999;
             dr(J,:) = 999;
         else
-            
-            
             adefq(I) = adefq(I)+adefq(J);
             adefx(I) = (adefx(I)+adefx(J))/2;
             adefy(I) = (adefy(I)+adefy(J))/2;
             del = [del; J];
-            dr(:,J) = 999;
             adefx(del) = [];
             adefy(del) = [];
             adefq(del) = [];
@@ -48,7 +44,8 @@ function adefs = finddefs_expt(dirf,holes,minr,XYcal,dsm)
             dy = adefy - adefy';
             
             dr = sqrt(dx.^2 + dy.^2);
-    
+            dr = dr + tril(999*ones(size(dr)));
+
             del = [];
         end
 

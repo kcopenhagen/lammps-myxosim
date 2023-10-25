@@ -17,21 +17,23 @@ runs = 0:2;
 fp = "PoissonRevs";
 frac = 1;
 imsz = 40;
-dr = 0.2;
+dr = 0.5;
 
 xbins = -imsz/2:dr:imsz/2;
 ybins = xbins;
 
-pdefvx = zeros(numel(ybins),numel(xbins));
-pdefvxM2 = pdefvx;
-pdefvy = pdefvx;
-pdefvyM2 = pdefvx;
-pdefct = pdefvx;
-ndefvx = pdefvx;
-ndefvxM2 = ndefvx;
-ndefvy = pdefvx;
-ndefvyM2 = ndefvy;
-ndefct = pdefvx;
+pvx = zeros(numel(ybins),numel(xbins));
+pM2x = pvx;
+pvy = pvx;
+pM2y = pvx;
+pctx = pvx;
+pcty = pvx;
+nvx = pvx;
+nM2x = nvx;
+nvy = pvx;
+nM2y = nvy;
+nctx = pvx;
+ncty = pvx;
 
 for r = 1:numel(runs)
     run = runs(r);
@@ -49,16 +51,16 @@ for r = 1:numel(runs)
                     [cxs,cys,cmux,cmuy,cvx,cvy] = recenter_bds(bds,adefs(i),boxSize,imsz);
                     cxinds = discretize(cxs,xbins);
                     cyinds = discretize(cys,ybins);
-                    inds = sub2ind(size(pdefvx),cyinds,cxinds);
-                    pdefct(inds) = pdefct(inds) + 1;
-                    vxdelta = cvx - pdefvx(inds);
-                    vydelta = cvy - pdefvy(inds);
-                    pdefvx(inds) = pdefvx(inds) + vxdelta./pdefct(inds);
-                    pdefvy(inds) = pdefvy(inds) + vydelta./pdefct(inds);
-                    vxdelta2 = cvx - pdefvx(inds);
-                    vydelta2 = cvy - pdefvy(inds);
-                    pdefvxM2(inds) = pdefvxM2(inds) + vxdelta.*vxdelta2;
-                    pdefvyM2(inds) = pdefvyM2(inds) + vydelta.*vydelta2;
+                    inds = sub2ind(size(pvx),cyinds,cxinds);
+                    pctx(inds) = pctx(inds) + 1;
+                    vxdelta = cvx - pvx(inds);
+                    vydelta = cvy - pvy(inds);
+                    pvx(inds) = pvx(inds) + vxdelta./pctx(inds);
+                    pvy(inds) = pvy(inds) + vydelta./pctx(inds);
+                    vxdelta2 = cvx - pvx(inds);
+                    vydelta2 = cvy - pvy(inds);
+                    pM2x(inds) = pM2x(inds) + vxdelta.*vxdelta2;
+                    pM2y(inds) = pM2y(inds) + vydelta.*vydelta2;
 
                 elseif (adefs(i).q < -0.1)
                     cdef = adefs(i);
@@ -71,16 +73,16 @@ for r = 1:numel(runs)
                         [cxs,cys,cmux,cmuy,cvx,cvy] = recenter_bds(bds,cdef,boxSize,imsz);
                         cxinds = discretize(cxs,xbins);
                         cyinds = discretize(cys,ybins);
-                        inds = sub2ind(size(ndefvx),cyinds,cxinds);
-                        ndefct(inds) = ndefct(inds) + 1;
-                        vxdelta = cvx - ndefvx(inds);
-                        vydelta = cvy - ndefvy(inds);
-                        ndefvx(inds) = ndefvx(inds) + vxdelta./ndefct(inds);
-                        ndefvy(inds) = ndefvy(inds) + vydelta./ndefct(inds);
-                        vxdelta2 = cvx - ndefvx(inds);
-                        vydelta2 = cvy - ndefvy(inds);
-                        ndefvxM2(inds) = ndefvxM2(inds) + vxdelta.*vxdelta2;
-                        ndefvyM2(inds) = ndefvyM2(inds) + vydelta.*vydelta2;
+                        inds = sub2ind(size(nvx),cyinds,cxinds);
+                        nctx(inds) = nctx(inds) + 1;
+                        vxdelta = cvx - nvx(inds);
+                        vydelta = cvy - nvy(inds);
+                        nvx(inds) = nvx(inds) + vxdelta./nctx(inds);
+                        nvy(inds) = nvy(inds) + vydelta./nctx(inds);
+                        vxdelta2 = cvx - nvx(inds);
+                        vydelta2 = cvy - nvy(inds);
+                        nM2x(inds) = nM2x(inds) + vxdelta.*vxdelta2;
+                        nM2y(inds) = nM2y(inds) + vydelta.*vydelta2;
                     end
                 end
             end
@@ -88,6 +90,13 @@ for r = 1:numel(runs)
     end
 end
 toc
+
+pcty = pctx;
+ncty = nctx;
+save('~/lammps-myxosim/SimPaperAnalysis/Figures/Defects/Flows/sim.mat',...
+    'pvx','pvy','pM2x','pM2y','pctx','pcty',...
+    'nvx','nvy','nM2x','nM2y','nctx','ncty');
+
 
 %%
 qudr = 10;
